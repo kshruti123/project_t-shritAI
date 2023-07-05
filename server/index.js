@@ -3,17 +3,21 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 
 import dalleRoutes from './routes/dalle.routes.js';
-
+//to set up envi var
 dotenv.config();
 
-const app = express();
+//setup express application
+const app=express();
+
+//set up middleware
 app.use(cors());
-app.use(express.json({ limig: "50mb" }))
+//set weight of the payload that we can send
+app.use(express.json({limig:"50mb"}))
 
-app.use("/api/v1/dalle", dalleRoutes);
+app.use("/api/v1/dalle",dalleRoutes);
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: "Hello from DALL.E" })
+//set demo route
+app.get('/',(req,res)=>{
+    res.status(200).json({message:"hello world "})
 })
-
-app.listen(8080, () => console.log('Server has started on port 8080'))
+app.listen(8080,()=>console.log('server has started on port 8080'))
